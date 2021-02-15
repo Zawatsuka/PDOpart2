@@ -11,7 +11,6 @@ function validateData($data)
 
 function testData($data, $regex, $nameOfInput)
 {
-    
     if (!empty($data)) {
         // On test la valeur
         $testRegex = preg_match($regex, $data);

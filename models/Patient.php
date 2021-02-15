@@ -1,5 +1,5 @@
 <?php
-include(dirname(__FILE__).'/../utils/database.php');
+require_once(dirname(__FILE__).'/../utils/database.php');
 class Patient{
 
     private $_id;
@@ -10,6 +10,8 @@ class Patient{
     private $_mail;
 
     private $_pdo;
+
+    
 
     public function __construct($firstname=NULL, $lastname=NULL, $birthdate=NULL, $mail=NULL, $phone=NULL, $id=NULL)
     {
