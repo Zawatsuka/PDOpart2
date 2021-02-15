@@ -1,9 +1,8 @@
 <?php
     require_once(dirname(__FILE__).'/../utils/regex.php');
-    require_once(dirname(__FILE__).'/../utils/function.php');
     require_once(dirname(__FILE__).'/../models/Patient.php');
     require_once(dirname(__FILE__).'/../models/Appointment.php');
-    
+
     $errorsArray=[];
     //On ne controle que s'il y a des données envoyées 
     $patient = new Patient();
@@ -22,7 +21,7 @@
         // on test la regex et on met un message d'erreur si c'est pas bon et si c'est pas rempli
 
         // ****************************************************
-        if(!empty($dateHour) && isset($dateHour)){
+        if(!empty($dateHour)){
             
             $testRegex = preg_match($regexDateHour,$dateHour);
             if($testRegex == false){
@@ -35,7 +34,7 @@
 
         //on nettoie l'id du patient
 
-        $idPatients= trim(filter_input(INPUT_POST,'idPatients', FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES));
+        $idPatients= trim(filter_input(INPUT_POST,'idPatients', FILTER_SANITIZE_NUMBER_INT));
 
 
 

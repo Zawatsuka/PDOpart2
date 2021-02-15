@@ -11,7 +11,7 @@ class Patient{
 
     private $_pdo;
 
-    
+
 
     public function __construct($firstname=NULL, $lastname=NULL, $birthdate=NULL, $mail=NULL, $phone=NULL, $id=NULL)
     {
@@ -59,7 +59,7 @@ class Patient{
         $stmt -> bindValue(':birthdate',$this->_birthdate , PDO::PARAM_STR);
         $stmt -> bindValue(':phone',$this->_phone , PDO::PARAM_STR);
         $stmt -> bindValue(':mail',$this->_mail , PDO::PARAM_STR);
-        $stmt -> bindValue(':id',$this->_id , PDO::PARAM_STR);
+        $stmt -> bindValue(':id',$this->_id , PDO::PARAM_INT);
 
         return($stmt->execute()) ? true : false;
     }

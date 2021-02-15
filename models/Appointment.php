@@ -19,7 +19,6 @@ class Appointment{
         $stmt = $this->_db->prepare($sql);
         $stmt -> bindValue(':dateHour',$this->_dateHour , PDO::PARAM_STR);
         $stmt -> bindValue(':idPatients',$this->_idPatients , PDO::PARAM_INT);
-        var_dump($this);
         return($stmt->execute()) ? true : false;
     }
 }
