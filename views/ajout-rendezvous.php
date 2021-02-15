@@ -11,13 +11,13 @@
 
                     <input 
                     type="datetime-local"
-                     class="form-control"
-                     value="<?php $today =date('Y-m-d');?>T<?php $hour=date('H:i');?>"
-                      id="dateHour"
-                       aria-describedby="dateHourHelp"
-                        name="dateHour"
-                         required pattern="^[A-Za-z-éèêëàâäôöûüç\' ]+$"
-                         placeholder="JJ/MM/AAAA  HH:mm" >
+                    class="form-control"
+                    value="<?php $today= date('Y-m-d');?>T<?php $hour= date('H:i');?>"
+                    id="dateHour"
+                    aria-describedby="dateHourHelp"
+                    name="dateHour"
+                    required pattern="^[A-Za-z-éèêëàâäôöûüç\' ]+$"
+                    placeholder="JJ/MM/AAAA  HH:mm" >
                     <p><?= $errorsArray['dateHour_error'] ?? ''?></p>
                 </div>
                 <div class="mb-3">
