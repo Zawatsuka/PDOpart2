@@ -3,7 +3,7 @@
         <div class="col-12">
             <?php
         if(isset($testRegister) && $testRegister==true){
-        include(dirname(__FILE__).'/../utils/alertOK.php');
+        include(dirname(__FILE__).'/../utils/alertRdv.php');
     }?>
             <form method="POST">
                 <h3 class="my-4">Ajout d'un rendez-vous</h3>

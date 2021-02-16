@@ -21,4 +21,10 @@ class Appointment{
         $stmt -> bindValue(':idPatients',$this->_idPatients , PDO::PARAM_INT);
         return($stmt->execute()) ? true : false;
     }
+    public function listAppointment(){
+        $sql = "SELECT `patients`.`firstname`FROM ``";
+        $sth = $this->_db->query($sql);
+        $rdv = $sth->fetchAll();
+        return $rdv; 
+    }
 }
