@@ -30,5 +30,11 @@ class Appointment{
         $rdv = $sth->fetchAll();
         return $rdv; 
     }
-    
+    public function AppointmentView($id){
+    $sql ="SELECT * FROM `appointments` WHERE `id`= :id";
+    $sth = $this-> _db->prepare($sql);
+    $sth-> bindValue(':id',$id, PDO::PARAM_INT);
+    $sth->execute();
+    return $sth -> fetch();
+    }
 }

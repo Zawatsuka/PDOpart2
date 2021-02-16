@@ -1,5 +1,5 @@
 <?php
-include(dirname(__FILE__).'/../models/Patient.php');
+require_once(dirname(__FILE__).'/../models/Patient.php');
 $patient = new Patient();
 $idPatient = intval(trim(filter_input(INPUT_GET,'idPatient',FILTER_SANITIZE_NUMBER_INT)));
 
