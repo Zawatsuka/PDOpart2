@@ -1,13 +1,18 @@
 <?php
    include(dirname(__FILE__).'/../utils/regex.php');
    include(dirname(__FILE__).'/../utils/function.php');
+   include(dirname(__FILE__).'/../utils/config.php');
    include(dirname(__FILE__).'/../models/Patient.php');
    
    $errorsArray=[];
    //On ne controle que s'il y a des données envoyées 
-   $id= $_GET['idPatient'];
+   $id= intval(trim(filter_input(INPUT_GET,'idPatient',FILTER_SANITIZE_NUMBER_INT)));
    $patient = new Patient();
    $getPatient= $patient->patientReview($id);
+   if($getPatient == false){
+       header('location: /index.php');
+   }
+
    if ($_SERVER['REQUEST_METHOD'] == 'POST') {  
        // verification de l'adresse mail
        $mail = isset($_POST['mail']) && !empty($_POST['mail']) ? validateData($_POST['mail']) : '';
@@ -22,15 +27,25 @@
         testData($lastname, $regexText,'lastname')== NULL ?? array_push($errorsArray,testData($lastname, $regexText,'lastname'));  
 
         // verification de phone
-        $phone = isset($_POST['phone']) && !empty($_POST['phone']) ? validateData($_POST['phone']) : '';
+        $phone = isset($_POST['phone']) ? validateData($_POST['phone']) : '';
         testData($phone, $regexPhone,'phone')== NULL ?? array_push($errorsArray,testData($phone, $regexPhone,'phone'));  
 
        // verification de la date de naissance
        $birthdate = isset($_POST['birthdate']) && !empty($_POST['birthdate']) ? validateData($_POST['birthdate']) : '';
-       testData($birthdate, $regexDate,'birthdate')== NULL ?? array_push($errorsArray,testData($birthdate, $regexDate,'birthdate'));  
+       testData($birthdate, $regexDate,'birthdate')== NULL ?? array_push($errorsArray,testData($birthdate, $regexDate,'birthdate')); 
 
-       $patient = new Patient($firstname,$lastname,$birthdate,$mail,$phone,$id);
-       $update = $patient->updatePatient($firstname,$lastname,$birthdate,$phone,$mail,$id); 
+    if(empty($errorsArray)){
+        $patient = new Patient($firstname,$lastname,$birthdate,$mail,$phone,$id);
+       $update = $patient->updatePatient();
+    //    var_dump($update);
+    //    die;
+       if($update === true){
+           header('location:/controllers/liste-patientCTRL.php');
+       }else{
+           $errorsArray['erreur_global'] = $getMessage[$update];
+
+       }
+    }
    }
    
 

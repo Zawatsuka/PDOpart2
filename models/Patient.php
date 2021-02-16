@@ -45,23 +45,29 @@ class Patient{
     }
 
     public function patientReview($id){
-        $sql = "SELECT * FROM `patients` WHERE `id`= $id";
-        $sth = $this->_pdo->query($sql);
-        $patients = $sth->fetch();
-        return $patients; 
+        $sql = "SELECT * FROM `patients` WHERE `id`= :id";
+        $sth = $this->_pdo->prepare($sql);
+        $sth-> bindValue(':id',$id, PDO::PARAM_INT); 
+        $sth->execute();
+        $patient = $sth->fetch();
+        return $patient; 
     }
-    public  function updatePatient(){
-        $sql = "UPDATE `patients` SET `firstname`=:firstname, `lastname`=:lastname,`birthdate`=:birthdate,`phone`=:phone,`mail`=:mail
-        WHERE `id` = :id";
-        $stmt = $this->_pdo->prepare($sql);
-        $stmt -> bindValue(':lastname',$this->_lastname , PDO::PARAM_STR);
-        $stmt -> bindValue(':firstname',$this->_firstname , PDO::PARAM_STR);
-        $stmt -> bindValue(':birthdate',$this->_birthdate , PDO::PARAM_STR);
-        $stmt -> bindValue(':phone',$this->_phone , PDO::PARAM_STR);
-        $stmt -> bindValue(':mail',$this->_mail , PDO::PARAM_STR);
-        $stmt -> bindValue(':id',$this->_id , PDO::PARAM_INT);
 
-        return($stmt->execute()) ? true : false;
+    public function updatePatient(){
+        try{
+            $sql = "UPDATE `patients` SET `firstname`=:firstname, `lastname`=:lastname,`birthdate`=:birthdate,`phone`=:phone,`mail`=:mail
+            WHERE `id` = :id";
+            $stmt = $this->_pdo->prepare($sql);
+            $stmt -> bindValue(':lastname',$this->_lastname , PDO::PARAM_STR);
+            $stmt -> bindValue(':firstname',$this->_firstname , PDO::PARAM_STR);
+            $stmt -> bindValue(':birthdate',$this->_birthdate , PDO::PARAM_STR);
+            $stmt -> bindValue(':phone',$this->_phone , PDO::PARAM_STR);
+            $stmt -> bindValue(':mail',$this->_mail , PDO::PARAM_STR);
+            $stmt -> bindValue(':id',$this->_id , PDO::PARAM_INT);
+            return $stmt->execute();
+        }catch(PDOException $e){
+            return $e->getCode();
+        }
     }
    
     

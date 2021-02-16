@@ -1,10 +1,7 @@
 <div class="container p-3">
     <div class="row">
         <div class="col-12">
-        <?php
-        if(isset($testRegister) && $testRegister==true){
-        include(dirname(__FILE__).'/../utils/alertOK.php');
-    }?>
+        <?=$errorsArray['erreur_global']?? '';?>
             <form method="POST">
                 <h3 class="my-4">Modifier le Patient</h3>
                 <div class="mb-3">
@@ -53,7 +50,6 @@
                     id="phone"
                     aria-describedby="phoneHelp"
                     name="phone"
-                    required
                     value="<?=$getPatient->phone;?>"
                     pattern="^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$">
                     <p><?= $errorsArray['phone_error'] ?? ''?></p>

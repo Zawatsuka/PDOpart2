@@ -22,7 +22,10 @@ class Appointment{
         return($stmt->execute()) ? true : false;
     }
     public function listAppointment(){
-        $sql = "SELECT `patients`.`firstname`FROM ``";
+        $sql = "SELECT `patients`.`lastname`,`patients`.`firstname`, `appointments`.`dateHour`, `appointments`.`id`
+                FROM `appointments`
+                LEFT JOIN `patients` 
+                ON `appointments`.`idPatients`=`patients`.`id`";
         $sth = $this->_db->query($sql);
         $rdv = $sth->fetchAll();
         return $rdv; 
