@@ -30,4 +30,5 @@ class Appointment{
         $rdv = $sth->fetchAll();
         return $rdv; 
     }
+    
 }
