@@ -1,6 +1,7 @@
 <?php
 require_once(dirname(__FILE__).'/../models/Patient.php');
 require_once(dirname(__FILE__).'/../models/Appointment.php');
+require_once(dirname(__FILE__).'/../utils/regex.php');
 
 $idRdv= intval(trim(filter_input(INPUT_GET,'idRdv', FILTER_SANITIZE_NUMBER_INT)));
 
@@ -8,8 +9,9 @@ $idRdv= intval(trim(filter_input(INPUT_GET,'idRdv', FILTER_SANITIZE_NUMBER_INT))
 $appointement = new Appointment();
 $appointementView= $appointement->AppointmentView($idRdv);
 
+
 $patient = new Patient();
-   $getPatient= $patient->patientReview($appointementView->idPatients);
+   $getPatient= $patient->patientList();
    
 $errorsArray=[];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {  
@@ -31,7 +33,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }else{
         $errorsArray['dateHour_error'] = 'Le champ n\'est pas rempli';
     }
+
+    $idPatients= trim(filter_input(INPUT_POST,'idPatients', FILTER_SANITIZE_NUMBER_INT));
     
+    if(empty($errorsArray)){
+        $appointementMod = new Appointment($dateHour, $idPatients, $idRdv);
+        $Update = $appointementMod->UpdateAppointement();
+        
+    }
     
 
 }
