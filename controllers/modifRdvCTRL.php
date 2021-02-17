@@ -37,8 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $idPatients= trim(filter_input(INPUT_POST,'idPatients', FILTER_SANITIZE_NUMBER_INT));
     
     if(empty($errorsArray)){
-        $appointementMod = new Appointment($dateHour, $idPatients, $idRdv);
-        $Update = $appointementMod->UpdateAppointement();
+        $appointmentMod = new Appointment($dateHour, $idPatients, $idRdv);
+        $Update = $appointmentMod->UpdateAppointment();
         
     }
     

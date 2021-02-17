@@ -40,14 +40,14 @@ class Appointment{
     return $sth -> fetch();
     }
 
-    public function UpdateAppointement(){
-        $sql ="UPDATE `appointements` 
+    public function UpdateAppointment(){
+        $sql ="UPDATE `appointments` 
         SET `dateHour`= :dateHour , `idPatients`= :idPatients 
         WHERE `id` = :id";
         $stmt = $this->_db->prepare($sql);
         $stmt -> bindValue(':dateHour',$this->_dateHour , PDO::PARAM_STR);
         $stmt -> bindValue(':idPatients',$this->_idPatients , PDO::PARAM_INT);
         $stmt -> bindValue(':id',$this->_id , PDO::PARAM_INT);
-        return $stmt->execute();
+        return($stmt->execute()) ? true : false;
     }
 }
