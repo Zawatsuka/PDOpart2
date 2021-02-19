@@ -76,11 +76,11 @@ class Patient{
         return $stmt->execute();
     }
     public function searchPatient($search){
-        $sql = "SELECT * FROM `patients` WHERE `firstname` LIKE ':search%'";
+        $sql = "SELECT * FROM `patients` WHERE `firstname` LIKE :search";
         $stmt = $this ->_pdo->prepare($sql);
-        $stmt-> bindValue(':search',$search, PDO::PARAM_STR);
-        $patients = $stmt->fetchAll();
-        return $patients;
+        $stmt-> bindValue(':search', '%'.$search.'%', PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll();
 
     }
     
