@@ -69,6 +69,19 @@ class Patient{
             return $e->getCode();
         }
     }
-   
+    public function DeletedPatient($idPatients){
+        $sql = "DELETE FROM `patients` WHERE `id` = :idPatients";
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt-> bindValue(':idPatients' , $idPatients , PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+    public function searchPatient($search){
+        $sql = "SELECT * FROM `patients` WHERE `firstname` LIKE ':search%'";
+        $stmt = $this ->_pdo->prepare($sql);
+        $stmt-> bindValue(':search',$search, PDO::PARAM_STR);
+        $patients = $stmt->fetchAll();
+        return $patients;
+
+    }
     
 }

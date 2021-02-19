@@ -1,6 +1,10 @@
 <div class="container-fluid mt-4">
     <div class="row">
         <div class="col-12">
+        <form method="GET">
+        <input type="search" name="search">
+        <input type="submit" value="go!!!">
+            </form>
             <table class="table table-striped table-bordered table-primary">
                 <thead>
                     <tr>
@@ -10,6 +14,7 @@
                         <th scope="col">Date de Naissance</th>
                         <th scope="col">Téléphone</th>
                         <th scope="col">Adresse Email</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,6 +27,7 @@
                         <td><?= $value->birthdate;?></td>
                         <td><?= $value->phone;?></td>
                         <td><?= $value->mail;?></td>
+                        <td><a href="/controllers/liste-patientCTRL.php?idPatients=<?=$value->id;?>">Supprimer</a></td>
                     </tr>
                     <?php }
                         ?>

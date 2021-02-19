@@ -2,11 +2,10 @@
 require_once(dirname(__FILE__).'/../models/Patient.php');
 require_once(dirname(__FILE__).'/../models/Appointment.php');
 $patient = new Patient();
-$idPatient = intval(trim(filter_input(INPUT_GET,'idPatient',FILTER_SANITIZE_NUMBER_INT)));
-$patients = $patient->patientReview($idPatient);
-
-$rendezVous = new Appointment();
-$rdv = $rendezVous->listAppointment();
+$idPatients = intval(trim(filter_input(INPUT_GET,'idPatient',FILTER_SANITIZE_NUMBER_INT)));
+$patients = $patient->patientReview($idPatients);
+$rendezVous = new Appointment($idPatients);
+$rdv = $rendezVous->listAppointmentForOnePatient($idPatients);
 
 include(dirname(__FILE__).'/../views/template/header.php');
 

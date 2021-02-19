@@ -50,4 +50,20 @@ class Appointment{
         $stmt -> bindValue(':id',$this->_id , PDO::PARAM_INT);
         return($stmt->execute()) ? true : false;
     }
+
+    public function listAppointmentForOnePatient($idPatients){
+       $sql ="SELECT * FROM `appointments` WHERE `idPatients` = :idPatients"; 
+       $stmt = $this->_db->prepare($sql);
+       $stmt-> bindValue(':idPatients',$idPatients, PDO::PARAM_INT);
+       $stmt->execute(); 
+       return $stmt->fetchAll(); 
+    }
+
+    public function DeletedAppointment($idRdv){
+        $sql = "DELETE FROM `appointments` WHERE `id` = :idRdv";
+        $stmt = $this->_db->prepare($sql);
+        $stmt-> bindValue(':idRdv' , $idRdv , PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
 }
