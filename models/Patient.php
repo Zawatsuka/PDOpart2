@@ -26,7 +26,7 @@ class Patient{
     // ('$this->_lastname','$this->_firstname','$this->_birthdate','$this->_phone','$this->_mail')";
     public  function addPatient(){
         $sql = "INSERT INTO `patients` (`lastname`,`firstname`,`birthdate`,`phone`,`mail`)VALUE 
-        (:lastname,:firstname,:birthdate,:phone,:mail)";
+        (:lastname,:firstname,:birthdate,:phone,:mail);";
         $stmt = $this->_pdo->prepare($sql);
         $stmt -> bindValue(':lastname',$this->_lastname , PDO::PARAM_STR);
         $stmt -> bindValue(':firstname',$this->_firstname , PDO::PARAM_STR);
@@ -38,14 +38,14 @@ class Patient{
     }
 
     public function patientList(){
-        $sql = "SELECT * FROM `patients`";
+        $sql = "SELECT * FROM `patients`;";
         $sth = $this->_pdo->query($sql);
         $patients = $sth->fetchAll();
         return $patients; 
     }
 
     public function patientReview($id){
-        $sql = "SELECT * FROM `patients` WHERE `id`= :id";
+        $sql = "SELECT * FROM `patients` WHERE `id`= :id;";
         $sth = $this->_pdo->prepare($sql);
         $sth-> bindValue(':id',$id, PDO::PARAM_INT); 
         $sth->execute();
@@ -56,7 +56,7 @@ class Patient{
     public function updatePatient(){
         try{
             $sql = "UPDATE `patients` SET `firstname`=:firstname, `lastname`=:lastname,`birthdate`=:birthdate,`phone`=:phone,`mail`=:mail
-            WHERE `id` = :id";
+            WHERE `id` = :id;";
             $stmt = $this->_pdo->prepare($sql);
             $stmt -> bindValue(':lastname',$this->_lastname , PDO::PARAM_STR);
             $stmt -> bindValue(':firstname',$this->_firstname , PDO::PARAM_STR);
@@ -70,13 +70,13 @@ class Patient{
         }
     }
     public function DeletedPatient($idPatients){
-        $sql = "DELETE FROM `patients` WHERE `id` = :idPatients";
+        $sql = "DELETE FROM `patients` WHERE `id` = :idPatients;";
         $stmt = $this->_pdo->prepare($sql);
         $stmt-> bindValue(':idPatients' , $idPatients , PDO::PARAM_INT);
         return $stmt->execute();
     }
     public function searchPatient($search){
-        $sql = "SELECT * FROM `patients` WHERE `firstname` LIKE :search";
+        $sql = "SELECT * FROM `patients` WHERE `firstname` LIKE :search;";
         $stmt = $this ->_pdo->prepare($sql);
         $stmt-> bindValue(':search', '%'.$search.'%', PDO::PARAM_STR);
         $stmt->execute();
