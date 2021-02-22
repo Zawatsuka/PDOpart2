@@ -26,7 +26,7 @@ $firstInPage= ($currentPage*$numberPerPage)-$numberPerPage;
 if(isset($_GET['search'])){
 $searchInput =trim(filter_input(INPUT_GET,'search',FILTER_SANITIZE_STRING));
 $search = new Patient($searchInput);
-$patientlist = $search->searchPatient($searchInput);
+$getPatient = $search->searchPatient($searchInput);
 }else{
      $patient = new Patient();
    $getPatient= $patient->patientList($firstInPage , $numberPerPage);

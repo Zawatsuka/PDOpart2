@@ -28,20 +28,20 @@ class Patient{
         $sql = "INSERT INTO `patients` (`lastname`,`firstname`,`birthdate`,`phone`,`mail`)VALUE 
         (:lastname,:firstname,:birthdate,:phone,:mail);";
         $stmt = $this->_pdo->prepare($sql);
-        $stmt -> bindValue(':lastname',$this->_lastname , PDO::PARAM_STR);
-        $stmt -> bindValue(':firstname',$this->_firstname , PDO::PARAM_STR);
-        $stmt -> bindValue(':birthdate',$this->_birthdate , PDO::PARAM_STR);
-        $stmt -> bindValue(':phone',$this->_phone , PDO::PARAM_STR);
-        $stmt -> bindValue(':mail',$this->_mail , PDO::PARAM_STR);
+        $stmt ->bindValue(':lastname',$this->_lastname , PDO::PARAM_STR);
+        $stmt ->bindValue(':firstname',$this->_firstname , PDO::PARAM_STR);
+        $stmt ->bindValue(':birthdate',$this->_birthdate , PDO::PARAM_STR);
+        $stmt ->bindValue(':phone',$this->_phone , PDO::PARAM_STR);
+        $stmt ->bindValue(':mail',$this->_mail , PDO::PARAM_STR);
 
         return($stmt->execute()) ? true : false;
     }
 
     public function patientList($firstInPage , $numberPerPage){
-        $sql = "SELECT * FROM `patients` LIMIT :firstInPage , :numberPerPage;;";
+        $sql = "SELECT * FROM `patients` LIMIT :firstInPage , :numberPerPage;";
         $sth = $this->_pdo->prepare($sql);
-        $sth-> bindValue(':firstInPage', $firstInPage , PDO::PARAM_INT);
-        $sth-> bindValue(':search', $numberPerPage, PDO::PARAM_INT);
+        $sth->bindValue(':firstInPage', $firstInPage , PDO::PARAM_INT);
+        $sth->bindValue(':numberPerPage', $numberPerPage, PDO::PARAM_INT);
         $sth->execute();
         $patients = $sth->fetchAll();
         return $patients; 
@@ -88,8 +88,7 @@ class Patient{
     }
     public function countPatient(){
         $sql='SELECT COUNT(*) AS `nb_patient` FROM `patients`;';
-        $stmt =$this ->_pdo->prepare($sql);
-        $stmt->execute();
+        $stmt =$this ->_pdo->query($sql);
         return $stmt->fetch();
     }
     

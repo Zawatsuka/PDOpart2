@@ -26,7 +26,7 @@
                     </thead>
                     <tbody>
                         <?php
-                    foreach($patientList  as $value){ ?>
+                    foreach($getPatient as $value){ ?>
                         <tr>
                             <td><a href="/controllers/profil-patientCTRL.php?idPatient=<?= $value->id;?>"><img
                                         src="/assets/img/user-bouton.png" alt="user" class="img-fluid" width="20"></a>
@@ -46,15 +46,15 @@
             </form>
             <ul class="pagination">
                         <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
-                            <a href="./?page=<?= $currentPage - 1 ?>" class="page-link">Précédente</a>
+                            <a href="?page=<?= $currentPage - 1 ?>" class="page-link">Précédente</a>
                         </li>
                         <?php for($page = 1; $page <= $pages; $page++): ?>
                             <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
-                                <a href="./?page=<?= $page ?>" class="page-link"><?= $page ?></a>
+                                <a href="?page=<?= $page ?>" class="page-link"><?= $page ?></a>
                             </li>
                         <?php endfor ?>
                         <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
-                            <a href="./?page=<?= $currentPage + 1 ?>" class="page-link">Suivante</a>
+                            <a href="?page=<?= $currentPage + 1 ?>" class="page-link">Suivante</a>
                         </li>
                     </ul>
         </div>
