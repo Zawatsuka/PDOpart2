@@ -37,9 +37,12 @@ class Patient{
         return($stmt->execute()) ? true : false;
     }
 
-    public function patientList(){
-        $sql = "SELECT * FROM `patients`;";
-        $sth = $this->_pdo->query($sql);
+    public function patientList($firstInPage , $numberPerPage){
+        $sql = "SELECT * FROM `patients` LIMIT :firstInPage , :numberPerPage;;";
+        $sth = $this->_pdo->prepare($sql);
+        $sth-> bindValue(':firstInPage', $firstInPage , PDO::PARAM_INT);
+        $sth-> bindValue(':search', $numberPerPage, PDO::PARAM_INT);
+        $sth->execute();
         $patients = $sth->fetchAll();
         return $patients; 
     }
@@ -76,12 +79,18 @@ class Patient{
         return $stmt->execute();
     }
     public function searchPatient($search){
-        $sql = "SELECT * FROM `patients` WHERE `firstname` LIKE :search;";
+        $sql = "SELECT * FROM `patients` WHERE `firstname` LIKE :search ";
         $stmt = $this ->_pdo->prepare($sql);
         $stmt-> bindValue(':search', '%'.$search.'%', PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchAll();
 
+    }
+    public function countPatient(){
+        $sql='SELECT COUNT(*) AS `nb_patient` FROM `patients`;';
+        $stmt =$this ->_pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch();
     }
     
 }

@@ -10,8 +10,6 @@ $appointement = new Appointment();
 $appointementView= $appointement->AppointmentView($idRdv);
 
 
-$patient = new Patient();
-   $getPatient= $patient->patientList();
 $hadPatient = new Patient();
     $patientViews = $hadPatient->patientReview($appointementView->idPatients);
    

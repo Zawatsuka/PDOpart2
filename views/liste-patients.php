@@ -9,7 +9,7 @@
                         aria-label="Rechercher..." aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit"><img src="/assets/img/search.png" class="img-fluid" width="20" alt="bouton rechercher"></button>
-                        <a href="http://part2.pdo/controllers/liste-patientCTRL.php"><button class="btn btn-outline-secondary" type="button"><img src="/assets/img/clean.png" class="img-fluid" width="35" alt="bouton rechercher"></button></a>
+                        <a href="/controllers/liste-patientCTRL.php"><button class="btn btn-outline-secondary" type="button"><img src="/assets/img/clean.png" class="img-fluid" width="35" alt="bouton rechercher"></button></a>
                     </div>
                 </div>
                 <table class="table table-striped table-bordered table-primary">
@@ -26,7 +26,7 @@
                     </thead>
                     <tbody>
                         <?php
-                    foreach($patientSearch  as $value){ ?>
+                    foreach($patientList  as $value){ ?>
                         <tr>
                             <td><a href="/controllers/profil-patientCTRL.php?idPatient=<?= $value->id;?>"><img
                                         src="/assets/img/user-bouton.png" alt="user" class="img-fluid" width="20"></a>
@@ -44,7 +44,19 @@
                     </tbody>
                 </table>
             </form>
-
+            <ul class="pagination">
+                        <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
+                            <a href="./?page=<?= $currentPage - 1 ?>" class="page-link">Précédente</a>
+                        </li>
+                        <?php for($page = 1; $page <= $pages; $page++): ?>
+                            <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
+                                <a href="./?page=<?= $page ?>" class="page-link"><?= $page ?></a>
+                            </li>
+                        <?php endfor ?>
+                        <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
+                            <a href="./?page=<?= $currentPage + 1 ?>" class="page-link">Suivante</a>
+                        </li>
+                    </ul>
         </div>
     </div>
 </div>

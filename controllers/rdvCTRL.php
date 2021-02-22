@@ -8,7 +8,6 @@ $appointementView= $appointement->AppointmentView($idRdv);
 
 // recuperation du patient pour utiliser ses infos dans la view  
 $patient = new Patient();
-$idPatient = intval(trim(filter_input(INPUT_GET,'idPatient',FILTER_SANITIZE_NUMBER_INT)));
 $patients = $patient->patientReview($appointementView->idPatients);
 include(dirname(__FILE__).'/../views/template/header.php');
 include(dirname(__FILE__).'/../views/rdv.php');
