@@ -9,9 +9,9 @@ $idRdv= intval(trim(filter_input(INPUT_GET,'idRdv', FILTER_SANITIZE_NUMBER_INT))
 $appointement = new Appointment();
 $appointementView= $appointement->AppointmentView($idRdv);
 
-
 $hadPatient = new Patient();
-    $patientViews = $hadPatient->patientReview($appointementView->idPatients);
+$patientViews = $hadPatient->patientReview($appointementView->idPatients);
+$getPatient=$hadPatient->patientJustList();
    
 $errorsArray=[];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {  

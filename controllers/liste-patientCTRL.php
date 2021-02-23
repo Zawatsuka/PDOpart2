@@ -24,12 +24,12 @@ $pages=ceil($countP / $numberPerPage);
 $firstInPage= ($currentPage*$numberPerPage)-$numberPerPage;
 
 if(isset($_GET['search'])){
-$searchInput =trim(filter_input(INPUT_GET,'search',FILTER_SANITIZE_STRING));
-$search = new Patient($searchInput);
-$getPatient = $search->searchPatient($searchInput);
+    $searchInput =trim(filter_input(INPUT_GET,'search',FILTER_SANITIZE_STRING));
+    $search = new Patient($searchInput);
+    $getPatient = $search->searchPatient($searchInput);
 }else{
-     $patient = new Patient();
-   $getPatient= $patient->patientList($firstInPage , $numberPerPage);
+    $patient = new Patient($firstInPage , $numberPerPage);
+    $getPatient= $patient->patientList($firstInPage , $numberPerPage);
 }
 
 include(dirname(__FILE__).'/../views/template/header.php');

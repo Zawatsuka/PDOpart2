@@ -2,6 +2,7 @@
  include(dirname(__FILE__).'/../utils/regex.php');
  include(dirname(__FILE__).'/../utils/function.php');
  include(dirname(__FILE__).'/../models/Patient.php');
+ include(dirname(__FILE__).'/../models/Appointment.php');
  if ($_SERVER['REQUEST_METHOD'] == 'POST') {  
 
 // ___________________________________________ 
@@ -101,6 +102,34 @@
          $errorsArray['phone_error'] = 'Le champ n\'est pas rempli';
      }
 
+        //  ____________________________________ 
+
+     //on nettoie la date de naissance
+
+     $birthdate= trim(filter_input(INPUT_POST,'birthdate', FILTER_SANITIZE_STRING));
+     // ****************************************************
+ 
+     // on test la regex et on met un message d'erreur si c'est pas bon et si c'est pas rempli
+ 
+     // ****************************************************
+     if(!empty($birthdate)){
+         
+         $testRegex = preg_match($regexbirthdate,$birthdate);
+         if($testRegex == false){
+             $errorsArray['birthdate_error'] = 'La date de naissance n\'est pas valide';
+         }
+     }else{
+         $errorsArray['birthdate_error'] = 'Le champ n\'est pas rempli';
+     }
+
+    //  _______________________________________ 
+    // $rendezVous = new Appointment();
+    // $rdv = $rendezVous->listAppointment();
+
+    // $patient = new Patient($firstname,$lastname,$birthdate,$mail,$phone);
+        
+    // $testRegister = $patient->AddAppontmentPatient($rdv->dateHour,$rdv->idPatients);
+     // var_dump($patient);
 }
 
 
