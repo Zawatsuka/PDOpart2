@@ -47,6 +47,14 @@ class Patient{
         return $patients; 
     }
 
+    public function patientJustList(){
+        $sql = "SELECT * FROM `patients`";
+        $sth = $this->_pdo->prepare($sql);
+        $sth->execute();
+        $patients = $sth->fetchAll();
+        return $patients; 
+    }
+
     public function patientReview($id){
         $sql = "SELECT * FROM `patients` WHERE `id`= :id;";
         $sth = $this->_pdo->prepare($sql);

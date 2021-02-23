@@ -17,6 +17,9 @@
       <li class="nav-item">
       <a class="nav-link" href="/controllers/liste-rendez-vousCTRL.php"><img src="../../assets/img/rdv.png" alt="user" class="img-fluid mt-2" width="60"></a>
       </li>
+      <li class="nav-item">
+      <a class="nav-link" href="/controllers/ajoutRdvEtPatientCTRL.php"><img src="../../assets/img/rdv+patient.png" alt="user" class="img-fluid " width="60"></a>
+      </li>
     </ul>
   </div>
 </nav>

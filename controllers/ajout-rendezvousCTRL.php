@@ -6,7 +6,7 @@
     $errorsArray=[];
     //On ne controle que s'il y a des données envoyées 
     $patient = new Patient();
-    $patients = $patient->patientList();
+    $patients = $patient->patientJustList();
 
     // Si le server est bien sur la methode POST 
    
