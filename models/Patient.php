@@ -102,25 +102,16 @@ class Patient{
         return $stmt->fetch();
     }
     
-    public function AddAppontmentPatient($dateHour,$idPatients){
+    public function AddAppontmentPatient(){
         try{
             $sql = "INSERT INTO `patients` (`lastname`,`firstname`,`birthdate`,`phone`,`mail`)VALUE 
-            (:lastname,:firstname,:birthdate,:phone,:mail);"; 
-            $stmt = $this->_db->prepare($sql);
-            $stmt->beginTransaction();
+            (:lastname,:firstname,:birthdate,:phone,:mail);";
+            $stmt = $this->_pdo->prepare($sql);
             $stmt ->bindValue(':lastname',$this->_lastname , PDO::PARAM_STR);
             $stmt ->bindValue(':firstname',$this->_firstname , PDO::PARAM_STR);
             $stmt ->bindValue(':birthdate',$this->_birthdate , PDO::PARAM_STR);
             $stmt ->bindValue(':phone',$this->_phone , PDO::PARAM_STR);
             $stmt ->bindValue(':mail',$this->_mail , PDO::PARAM_STR);
-            $stmt->execute();
-            $sql2="INSERT INTO `appointments` (`dateHour`,`idPatients`)VALUE 
-            (:dateHour,:idPatients);";
-            $stmt = $this->_db->prepare($sql2);
-            $stmt -> bindValue(':dateHour',$this->$dateHour , PDO::PARAM_STR);
-            $stmt -> bindValue(':idPatients',$this->$idPatients , PDO::PARAM_INT);
-            $stmt->execute();
-            $stmt->commit();
         }catch(Exception $e){
 
         }

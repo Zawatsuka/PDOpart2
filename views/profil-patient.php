@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="col-6">
+        <div class="col-6">
             <table class="table table-striped table-bordered table-primary">
                 <thead>
                     <tr>
@@ -35,6 +35,6 @@
                         <?php } ?>
                 </tbody>
             </table>
-        </div> -->
+        </div>
     </div>
 </div>

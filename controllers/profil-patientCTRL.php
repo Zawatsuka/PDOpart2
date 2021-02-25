@@ -16,6 +16,6 @@ include(dirname(__FILE__).'/../views/template/header.php');
 
 include(dirname(__FILE__).'/../views/profil-patient.php');
 
-include(dirname(__FILE__).'/../views/liste-rendez-vous.php');
+// include(dirname(__FILE__).'/../views/liste-rendez-vous.php');
 
 include(dirname(__FILE__).'/../views/template/footer.php');

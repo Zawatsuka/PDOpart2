@@ -9,6 +9,9 @@ $appointementView= $appointement->AppointmentView($idRdv);
 // recuperation du patient pour utiliser ses infos dans la view  
 $patient = new Patient();
 $patients = $patient->patientReview($appointementView->idPatients);
+if($patients===false){
+    header('location: /index.php');
+}
 include(dirname(__FILE__).'/../views/template/header.php');
 include(dirname(__FILE__).'/../views/rdv.php');
 include(dirname(__FILE__).'/../views/template/footer.php');
