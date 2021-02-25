@@ -123,12 +123,12 @@
      }
 
     //  _______________________________________ 
-    // $rendezVous = new Appointment();
-    // $rdv = $rendezVous->listAppointment();
+    $rendezVous = new Appointment();
+    $rdv = $rendezVous->listAppointment();
 
-    // $patient = new Patient($firstname,$lastname,$birthdate,$mail,$phone);
+    $patient = new Patient($firstname,$lastname,$birthdate,$mail,$phone);
         
-    // $testRegister = $patient->AddAppontmentPatient($rdv->dateHour,$rdv->idPatients);
+    $testRegister = $patient->AddAppontmentPatient($rdv->dateHour,$rdv->idPatients);
      // var_dump($patient);
 }
 

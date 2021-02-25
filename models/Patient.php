@@ -59,9 +59,11 @@ class Patient{
         $sql = "SELECT * FROM `patients` WHERE `id`= :id;";
         $sth = $this->_pdo->prepare($sql);
         $sth-> bindValue(':id',$id, PDO::PARAM_INT); 
-        $sth->execute();
-        $patient = $sth->fetch();
-        return $patient; 
+        if($sth->execute()){
+            return $sth->fetch();
+        }else{
+            return false;
+        }
     }
 
     public function updatePatient(){

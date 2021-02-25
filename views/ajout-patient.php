@@ -1,4 +1,4 @@
-<div class="container p-3">
+<div class="container p-3 fadeInLeft">
     <div class="row">
         <div class="col-12">
         <?php

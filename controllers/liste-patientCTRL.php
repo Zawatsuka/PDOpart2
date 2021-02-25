@@ -9,7 +9,7 @@ if(isset($_GET['page']) && !empty($_GET['page'])){
 
 
 $idPatients =intval(trim(filter_input(INPUT_GET,'idPatients',FILTER_SANITIZE_NUMBER_INT)));
-$deleted = new Patient($idPatients);
+$deleted = new Patient();
 $patientsDelete = $deleted->DeletedPatient($idPatients);
 
 $countPatients = new Patient();

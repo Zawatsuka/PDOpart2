@@ -52,7 +52,11 @@ class Appointment{
     }
 
     public function listAppointmentForOnePatient($idPatients){
-       $sql ="SELECT * FROM `appointments` WHERE `idPatients` = :idPatients"; 
+    //    $sql ="SELECT * FROM `appointments` WHERE `idPatients` = :idPatients"; 
+    $sql ='SELECT `patients`.`lastname`,`patients`.`firstname`, `appointments`.`dateHour`, `appointments`.`id`
+    FROM `appointments`
+    LEFT JOIN `patients` 
+    ON `appointments`.`idPatients`=`patients`.`id` WHERE `appointments`.`idPatients` = :idPatients;';
        $stmt = $this->_db->prepare($sql);
        $stmt-> bindValue(':idPatients',$idPatients, PDO::PARAM_INT);
        $stmt->execute(); 

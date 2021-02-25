@@ -1,4 +1,4 @@
-<div class="container-fluid p-5">
+<div class="container-fluid p-5 fadeInLeft ">
     <div class="row">
         <div class="col-6">
             <div class="card mb-3" style="max-width: 540px;">
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-6">
+        <!-- <div class="col-6">
             <table class="table table-striped table-bordered table-primary">
                 <thead>
                     <tr>
@@ -35,6 +35,6 @@
                         <?php } ?>
                 </tbody>
             </table>
-        </div>
+        </div> -->
     </div>
 </div>
