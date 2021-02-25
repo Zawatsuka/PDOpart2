@@ -1,4 +1,4 @@
-<div class="container-fluid mt-4">
+<div class="container-fluid mt-4 fadeInLeft ">
     <div class="row">
         <div class="col-12">
             <form method="GET" class="g-3">
@@ -44,6 +44,9 @@
                     </tbody>
                 </table>
             </form>
+            <?php
+            if(!isset($_GET['search'])){
+            ?>
             <ul class="pagination">
                         <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
                             <a href="?page=<?= $currentPage - 1 ?>" class="page-link">Précédente</a>
@@ -57,6 +60,9 @@
                             <a href="?page=<?= $currentPage + 1 ?>" class="page-link">Suivante</a>
                         </li>
                     </ul>
+            <?php
+            }
+            ?>
         </div>
     </div>
 </div>
