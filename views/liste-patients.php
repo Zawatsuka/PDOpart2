@@ -29,8 +29,7 @@
                     foreach($getPatient as $value){ ?>
                         <tr>
                             <td><a href="/controllers/profil-patientCTRL.php?idPatient=<?= $value->id;?>"><img
-                                        src="/assets/img/user-bouton.png" alt="user" class="img-fluid" width="20"></a>
-                                <?= $value->id;?></td>
+                                        src="/assets/img/user-bouton.png" alt="user" class="img-fluid" width="20"></a></td>
                             <td><?= $value->firstname;?></td>
                             <td><?= $value->lastname;?></td>
                             <td><?= $value->birthdate;?></td>

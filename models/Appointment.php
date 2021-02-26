@@ -70,4 +70,13 @@ class Appointment{
         return $stmt->execute();
     }
 
+    public  function addAppoWithOnePatient($id){
+        $sql = "INSERT INTO `appointments` (`dateHour`,`idPatients`)VALUE 
+        (:dateHour,:idPatients);";
+        $stmt = $this->_db->prepare($sql);
+        $stmt -> bindValue(':dateHour',$this->_dateHour , PDO::PARAM_STR);
+        $stmt -> bindValue(':idPatients',$id, PDO::PARAM_INT);
+        return($stmt->execute()) ? true : false;
+    }
+
 }

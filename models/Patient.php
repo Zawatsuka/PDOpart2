@@ -33,8 +33,9 @@ class Patient{
         $stmt ->bindValue(':birthdate',$this->_birthdate , PDO::PARAM_STR);
         $stmt ->bindValue(':phone',$this->_phone , PDO::PARAM_STR);
         $stmt ->bindValue(':mail',$this->_mail , PDO::PARAM_STR);
-
-        return($stmt->execute()) ? true : false;
+        $stmt->execute();
+        return $this-> _pdo->lastInsertId();
+        
     }
 
     public function patientList($firstInPage , $numberPerPage){
@@ -101,19 +102,4 @@ class Patient{
         $stmt =$this ->_pdo->query($sql);
         return $stmt->fetch();
     }
-    
-    public function AddAppontmentPatient(){
-        try{
-            $sql = "INSERT INTO `patients` (`lastname`,`firstname`,`birthdate`,`phone`,`mail`)VALUE 
-            (:lastname,:firstname,:birthdate,:phone,:mail);";
-            $stmt = $this->_pdo->prepare($sql);
-            $stmt ->bindValue(':lastname',$this->_lastname , PDO::PARAM_STR);
-            $stmt ->bindValue(':firstname',$this->_firstname , PDO::PARAM_STR);
-            $stmt ->bindValue(':birthdate',$this->_birthdate , PDO::PARAM_STR);
-            $stmt ->bindValue(':phone',$this->_phone , PDO::PARAM_STR);
-            $stmt ->bindValue(':mail',$this->_mail , PDO::PARAM_STR);
-        }catch(Exception $e){
-
-        }
     }
-}

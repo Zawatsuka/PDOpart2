@@ -114,7 +114,7 @@
      // ****************************************************
      if(!empty($birthdate)){
          
-         $testRegex = preg_match($regexbirthdate,$birthdate);
+         $testRegex = preg_match($regexDate,$birthdate);
          if($testRegex == false){
              $errorsArray['birthdate_error'] = 'La date de naissance n\'est pas valide';
          }
@@ -123,13 +123,15 @@
      }
 
     //  _______________________________________ 
-    $rendezVous = new Appointment();
-    $rdv = $rendezVous->listAppointment();
-
     $patient = new Patient($firstname,$lastname,$birthdate,$mail,$phone);
         
-    $testRegister = $patient->AddAppontmentPatient($rdv->dateHour,$rdv->idPatients);
-     // var_dump($patient);
+    $testRegister = $patient->addPatient();
+
+    $rdv = new Appointment($dateHour);
+
+    $addRDV = $rdv-> addAppoWithOnePatient($testRegister);
+
+   var_dump($testRegister);
 }
 
 
