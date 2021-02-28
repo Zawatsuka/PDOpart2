@@ -129,9 +129,8 @@
 
     $rdv = new Appointment($dateHour);
 
-    $addRDV = $rdv-> addAppoWithOnePatient($testRegister);
+    $addRDV = $rdv->addAppoWithOnePatient($testRegister);
 
-   var_dump($testRegister);
 }
 
 
